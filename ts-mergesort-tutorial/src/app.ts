@@ -76,7 +76,7 @@ function merge (numbers: number[], leftHalf: number[], rightHalf: number[]) {
 }
 
 (() => {
-    const amount: number = 1000000;
+    const amount: number = 100000000;
     const numbers: number[] = [];
 
     console.log(`Initialized on: ${new Date(Date.now()).toUTCString()}`);
@@ -84,8 +84,10 @@ function merge (numbers: number[], leftHalf: number[], rightHalf: number[]) {
         numbers[i] = Math.floor(Math.random() * amount);
     }
     console.log(`Started on: ${new Date(Date.now()).toUTCString()}`);
+    // console.log(`before: ${numbers}`);
 
     mergeSort(numbers);
 
     console.log(`Finished on: ${new Date(Date.now()).toUTCString()}`);
+    // console.log(`after: ${numbers}`);
 })();
