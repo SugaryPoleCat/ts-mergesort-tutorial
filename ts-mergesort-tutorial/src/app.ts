@@ -6,18 +6,21 @@
  * Left hand side to the right and if a number is lower, it will be inputted
  * into the final array
  * @param numbers the array to merge sort
- * @returns
+ * @returns 
  */
-function mergeSort(numbers) {
-    const inputLength = numbers.length;
+function mergeSort (numbers: number[]) {
+    const inputLength: number = numbers.length;
+
     // if index is less than 2 for the array.
     if (inputLength < 2) {
         return;
     }
+
     // mid index is basically whre the array is cut in half.
-    const midIndex = Math.floor(inputLength / 2);
-    const leftHalf = []; // midindex
-    const rightHalf = []; // input - mid
+    const midIndex: number = Math.floor(inputLength / 2);
+    const leftHalf: number[] = []; // midindex
+    const rightHalf: number[] = []; // input - mid
+
     // fill the arrays
     for (let i = 0; i < midIndex; i++) {
         leftHalf[i] = numbers[i];
@@ -25,16 +28,21 @@ function mergeSort(numbers) {
     for (let i = midIndex; i < inputLength; i++) {
         rightHalf[i - midIndex] = numbers[i];
     }
+
+
     // recursively do it for all.
     // until we run out of nuymbers in arrays and arrays.
     mergeSort(leftHalf);
     mergeSort(rightHalf);
+
     // finally merge them and sort.
     merge(numbers, leftHalf, rightHalf);
 }
-function merge(numbers, leftHalf, rightHalf) {
-    const leftSize = leftHalf.length;
-    const rightSize = rightHalf.length;
+
+function merge (numbers: number[], leftHalf: number[], rightHalf: number[]) {
+    const leftSize: number = leftHalf.length;
+    const rightSize: number = rightHalf.length;
+
     // register indexes
     let i = 0;
     let j = 0;
@@ -46,14 +54,14 @@ function merge(numbers, leftHalf, rightHalf) {
             numbers[k] = leftHalf[i];
             // and increase the index
             i++;
-        }
-        else {
+        } else {
             numbers[k] = rightHalf[j];
             j++;
         }
         // always increase k index at the end of the loop.
         k++;
     }
+
     // if any stragglers are left in any array.
     while (i < leftSize) {
         numbers[k] = leftHalf[i];
@@ -66,14 +74,18 @@ function merge(numbers, leftHalf, rightHalf) {
         k++;
     }
 }
+
 (() => {
-    const amount = 10000;
-    const numbers = [];
-    for (let i = 0; i < numbers.length; i++) {
+    const amount: number = 1000000;
+    const numbers: number[] = [];
+
+    console.log(`Initialized on: ${new Date(Date.now()).toUTCString()}`);
+    for (let i = 0; i < amount; i++) {
         numbers[i] = Math.floor(Math.random() * amount);
     }
-    console.log('starting');
+    console.log(`Started on: ${new Date(Date.now()).toUTCString()}`);
+
     mergeSort(numbers);
-    console.log('finished');
+
+    console.log(`Finished on: ${new Date(Date.now()).toUTCString()}`);
 })();
-//# sourceMappingURL=app.js.map
